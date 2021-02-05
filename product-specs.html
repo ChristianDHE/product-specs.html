@@ -1,0 +1,66 @@
+<!--<p class="productView">{{lang 'produc'}}</p>-->
+<div class="productView-specs" id="productView-specs">
+</div>
+<script >
+    
+    let productSpec_div = document.getElementById("productView-specs");
+    //let json = JSON.parse(myProduct);
+    function getHeader(str){
+        
+
+        if (str != undefined){
+            let before = str.substr(0, str.indexOf('.'));
+        str = before;
+        return str;
+        } else {
+            console.log("String is null");
+        }
+        
+    }
+
+    function getKey(str){
+        if (str != undefined){
+            let after = str.substr(str.indexOf('.') + 1);
+            str = after;
+            return str;
+        } else {
+            console.log("String is null");
+        }
+        
+    }
+
+    function getJSON(list){
+        for(let i = 0; i < list.length;  i++){
+            let key = (list[i].name);
+            let value = list[i].value;
+            let header = '';
+            let html = '';
+
+            header = getHeader(key);
+
+            key = getKey(key);
+
+            html += "<h3>" + header + "</h3>" +
+               "<p>" +  key +" : "+ value + "</p>";
+
+           
+
+    
+        } 
+        return html;
+
+        
+    }
+    let json = JSON.stringify([{name: "MEMORY.Slots", value: "1"}]);
+   
+    let result = getJSON(json);
+    productSpec_div.innerHTML= result;
+    
+
+</script>
+<style>
+    .productView-specs{
+        font-weight: bold;
+
+    }
+</style>
